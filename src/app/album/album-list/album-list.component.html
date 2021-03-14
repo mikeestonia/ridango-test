@@ -1,6 +1,13 @@
 <mat-list *ngIf="albums">
-  <mat-list-item [routerLink]="'photos/' + album.id" *ngFor="let album of albums">
-    <mat-icon mat-list-icon>folder</mat-icon>
-    {{ album.title }}
+  <mat-list-item *ngFor="let album of albums">
+    <span [routerLink]="'photos/' + album.id">
+      {{ album.title }}
+    </span>
+
+    <button mat-button>
+      <mat-icon mat-list-icon color="warn" (click)="deleteAlbum(album.id)"
+        >delete</mat-icon
+      >
+    </button>
   </mat-list-item>
 </mat-list>

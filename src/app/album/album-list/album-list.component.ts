@@ -17,9 +17,15 @@ export class AlbumListComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUserAlbums$(this.userId).pipe(take(1),
+    this.userService.getUserAlbums$(this.userId).pipe(
       tap((albums) => this.albums = albums)
     ).subscribe();
+  }
+
+  deleteAlbum(albumId: number): void {
+    if (this.userId) {
+      this.userService.removeUserAlbum(this.userId, albumId);
+    }
   }
 
 }
