@@ -50,14 +50,14 @@ export class UserService {
     this.logService.log({
       action: "delete",
       type: "album",
-      userId
+      id: userId.toString()
     });
   }
 
   createUserAlbum(userId: number, title: string): void {
     const currentAlbums = this.usersAlbums[userId].getValue();
     const newAlbums = [{
-      id: new Date().getMilliseconds(),
+      id: new Date().getTime(),
       userId,
       title,
     }, ...currentAlbums];
@@ -65,7 +65,7 @@ export class UserService {
     this.logService.log({
       action: "add",
       type: "album",
-      userId
+      id: userId.toString()
     });
   }
 

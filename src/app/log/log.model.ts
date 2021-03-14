@@ -1,5 +1,5 @@
 export interface LogAction {
-    userId: number;
+    id: string;
     type: "album" | "photo";
     action: "add" | "delete";
 }
