@@ -1,8 +1,10 @@
 import { Component, HostBinding, OnInit, ViewEncapsulation } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { switchMap, take, tap } from "rxjs/operators";
 import { AlbumPhoto } from "../album.model";
 import { AlbumService } from "../album.service";
+import { PhotoCreateDialogComponent } from "./photos-create/photos-create-dialog.component";
 
 @Component({
   selector: "app-album-photos",
@@ -16,7 +18,7 @@ export class AlbumPhotosComponent implements OnInit {
 
   albumPhotos: AlbumPhoto[] | undefined;
 
-  constructor(private route: ActivatedRoute, private albumService: AlbumService) { }
+  constructor(private route: ActivatedRoute, private albumService: AlbumService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -24,5 +26,19 @@ export class AlbumPhotosComponent implements OnInit {
       tap((albumPhotos) => this.albumPhotos = albumPhotos),
       take(1)
     ).subscribe();
+  }
+
+  addPhoto(): void {
+    const dialogRef = this.dialog.open(PhotoCreateDialogComponent, {
+      width: "250px"
+    });
+
+    dialogRef.afterClosed().subscribe((result: string) => {
+      console.log("TESILFSD", result);
+    });
+  }
+
+  photoTrackBy(index: number, photo: AlbumPhoto): number {
+    return photo.id;
   }
 }

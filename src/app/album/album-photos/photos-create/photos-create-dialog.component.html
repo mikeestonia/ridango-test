@@ -1,0 +1,16 @@
+<div mat-dialog-content>
+  <p>Please give the photo a name</p>
+  <mat-form-field>
+    <mat-label>Photo name</mat-label>
+    <input #nameInput matInput />
+  </mat-form-field>
+
+  <mat-card>
+    <img mat-card-image src="assets/ghost.jpg" />
+  </mat-card>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button [mat-dialog-close]="nameInput.value">Ok</button>
+</div>

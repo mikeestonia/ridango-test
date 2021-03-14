@@ -13,7 +13,7 @@ export class UserService {
 
   users$ = this.http.get<User[]>("https://jsonplaceholder.typicode.com/users/");
 
-  usersAlbums: Record<number, BehaviorSubject<Album[]>> = {};
+  private usersAlbums: Record<number, BehaviorSubject<Album[]>> = {};
 
   constructor(private http: HttpClient, private logService: LogService) { }
 
@@ -43,10 +43,6 @@ export class UserService {
     }
   }
 
-  private getKey(userId: number): string {
-    return "user_" + userId + "_albums";
-  }
-
   removeUserAlbum(userId: number, albumId: number): void {
     const currentAlbums = this.usersAlbums[userId].getValue();
     const newAlbums = currentAlbums.filter((a) => a.id !== albumId);
@@ -58,7 +54,7 @@ export class UserService {
     });
   }
 
-  createAlbum(userId: number, title: string): void {
+  createUserAlbum(userId: number, title: string): void {
     const currentAlbums = this.usersAlbums[userId].getValue();
     const newAlbums = [{
       id: new Date().getMilliseconds(),
@@ -71,6 +67,10 @@ export class UserService {
       type: "album",
       userId
     });
+  }
+
+  private getKey(userId: number): string {
+    return "user_" + userId + "_albums";
   }
 
   private persistAlbums(userId: number, albums: Album[]): void {

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Subscription } from "rxjs";
 import { take, tap } from "rxjs/operators";
@@ -9,7 +9,8 @@ import { AlbumCreateDialogComponent } from "../album-create/album-create-dialog.
 @Component({
   selector: "app-album-list",
   templateUrl: "./album-list.component.html",
-  styleUrls: ["./album-list.component.scss"]
+  styleUrls: ["./album-list.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class AlbumListComponent implements OnInit, OnDestroy {
 
@@ -19,7 +20,7 @@ export class AlbumListComponent implements OnInit, OnDestroy {
 
   userAlbums$$: Subscription | undefined;
 
-  constructor(private userService: UserService, public dialog: MatDialog, private cd: ChangeDetectorRef) { }
+  constructor(private userService: UserService, private dialog: MatDialog, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.userAlbums$$ = this.userService.getUserAlbums$(this.userId).pipe(
@@ -46,11 +47,14 @@ export class AlbumListComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result: string) => {
-      console.log("RESULT", result);
       if (this.userId && result) {
-        this.userService.createAlbum(this.userId, result);
+        this.userService.createUserAlbum(this.userId, result);
       }
     });
+  }
+
+  albumTrackBy(index: number, album: Album): number {
+    return album.id;
   }
 
 }

@@ -22,6 +22,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { AlbumCreateDialogComponent } from "./album/album-create/album-create-dialog.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { LogComponent } from "./log/log.component";
+import { PhotoCreateDialogComponent } from "./album/album-photos/photos-create/photos-create-dialog.component";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { LogComponent } from "./log/log.component";
     AlbumListComponent,
     AlbumPhotosComponent,
     AlbumCreateDialogComponent,
-    LogComponent
+    LogComponent,
+    PhotoCreateDialogComponent
   ],
   imports: [
     BrowserModule,

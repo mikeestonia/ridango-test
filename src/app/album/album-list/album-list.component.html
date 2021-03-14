@@ -1,7 +1,7 @@
 <mat-list *ngIf="albums?.length; else noAlbums">
   <ng-template [ngTemplateOutlet]="addMenuItem"></ng-template>
-  <mat-list-item *ngFor="let album of albums">
-    <span [routerLink]="'photos/' + album.id">
+  <mat-list-item *ngFor="let album of albums; trackBy:albumTrackBy">
+    <span class="album-title" [routerLink]="'photos/' + album.id">
       {{ album.title }}
     </span>
 

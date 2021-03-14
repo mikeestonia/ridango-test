@@ -1,0 +1,15 @@
+.mat-list-item {
+  &:nth-child(even) {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .mat-button {
+    margin-left: auto;
+  }
+
+  .album-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
