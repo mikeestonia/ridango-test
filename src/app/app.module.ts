@@ -11,16 +11,19 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
+import { MatCardModule } from "@angular/material/card";
 
 
 import { AlbumListComponent } from "./album/album-list/album-list.component";
+import { AlbumPhotosComponent } from "./album/album-photos/album-photos.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     PageNotFoundComponent,
-    AlbumListComponent
+    AlbumListComponent,
+    AlbumPhotosComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { AlbumListComponent } from "./album/album-list/album-list.component";
     HttpClientModule,
     MatListModule,
     MatIconModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

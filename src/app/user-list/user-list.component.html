@@ -2,8 +2,11 @@
   <h2>Users ({{ users.length }}) with albums</h2>
   <mat-expansion-panel #expansionPanel *ngFor="let user of users">
     <mat-expansion-panel-header>
-      <mat-panel-title> This is the expansion title </mat-panel-title>
-      <mat-panel-description> Click to show user albums </mat-panel-description>
+      <mat-panel-title>{{ user.name }}</mat-panel-title>
+      <mat-panel-description style="flex: 0 0 auto">
+        {{ expansionPanel.expanded ? "Hide" : "Show" }}
+        albums</mat-panel-description
+      >
     </mat-expansion-panel-header>
     <app-album-list
       *ngIf="expansionPanel.expanded"

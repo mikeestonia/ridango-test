@@ -1,0 +1,11 @@
+.app-album-photos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .mat-card {
+    margin: 0 16px 16px 0;
+    max-width: 400px;
+  }
+}

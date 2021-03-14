@@ -1,5 +1,5 @@
 <mat-list *ngIf="albums">
-  <mat-list-item *ngFor="let album of albums">
+  <mat-list-item [routerLink]="'photos/' + album.id" *ngFor="let album of albums">
     <mat-icon mat-list-icon>folder</mat-icon>
     {{ album.title }}
   </mat-list-item>
