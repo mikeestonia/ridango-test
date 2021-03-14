@@ -2,7 +2,6 @@
   <mat-card-header>
     <div
       mat-card-avatar
-      class="example-header-image"
       [ngStyle]="{ 'background-image': 'url(' + albumPhoto.thumbnailUrl + ')' }"
     ></div>
     <mat-card-title>{{ albumPhoto.title }}</mat-card-title>
@@ -10,7 +9,8 @@
   </mat-card-header>
   <img mat-card-image [src]="albumPhoto.url" [alt]="albumPhoto.title" />
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <button mat-button color="warn">DELETE</button>
   </mat-card-actions>
 </mat-card>
+
+<div *ngIf="!albumPhotos?.length">No photos, please add</div>

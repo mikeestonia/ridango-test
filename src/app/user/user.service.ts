@@ -29,28 +29,17 @@ export class UserService {
     const userAlbums = localStorage.getItem(this.getKey(userId));
     if (userAlbums) {
       // Albums loaded from local storage
-      this.usersAlbums = {
-        ...this.usersAlbums,
-        [userId]: new BehaviorSubject<Album[]>(JSON.parse(userAlbums))
-      };
+      this.usersAlbums[userId] = new BehaviorSubject<Album[]>(JSON.parse(userAlbums));
       return this.usersAlbums[userId];
     } else {
       // No albums loaded, get them from the API
-      this.usersAlbums = {
-        ...this.usersAlbums,
-        [userId]: new BehaviorSubject<Album[]>([])
-      };
-
+      this.usersAlbums[userId] = new BehaviorSubject<Album[]>([]);
       this.http.get<Album[]>(`https://jsonplaceholder.typicode.com/users/${userId}/albums`).pipe(
         take(1),
-        tap((albums) => {
-          this.usersAlbums[userId].next(albums);
-          localStorage.setItem(this.getKey(userId), JSON.stringify(albums));
-        })
+        tap((albums) => this.persistAlbums(userId, albums))
       ).subscribe();
       return this.usersAlbums[userId];
     }
-
   }
 
   private getKey(userId: number): string {
@@ -60,9 +49,21 @@ export class UserService {
   removeUserAlbum(userId: number, albumId: number): void {
     const currentAlbums = this.usersAlbums[userId].getValue();
     const newAlbums = currentAlbums.filter((a) => a.id !== albumId);
-    this.usersAlbums[userId].next(newAlbums);
-    localStorage.setItem(this.getKey(userId), JSON.stringify(newAlbums));
+    this.persistAlbums(userId, newAlbums);
+  }
+
+  createAlbum(userId: number, title: string): void {
+    const currentAlbums = this.usersAlbums[userId].getValue();
+    const newAlbums = [{
+      id: new Date().getMilliseconds(),
+      userId,
+      title,
+    }, ...currentAlbums];
+    this.persistAlbums(userId, newAlbums);
+  }
+
+  private persistAlbums(userId: number, albums: Album[]): void {
+    this.usersAlbums[userId].next(albums);
+    localStorage.setItem(this.getKey(userId), JSON.stringify(albums));
   }
 }
-
-

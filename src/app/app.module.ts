@@ -13,9 +13,14 @@ import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { AlbumListComponent } from "./album/album-list/album-list.component";
 import { AlbumPhotosComponent } from "./album/album-photos/album-photos.component";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { AlbumCreateDialogComponent } from "./album/album-create/album-create-dialog.component";
+
 
 @NgModule({
   declarations: [
@@ -23,7 +28,8 @@ import { AlbumPhotosComponent } from "./album/album-photos/album-photos.componen
     UserListComponent,
     PageNotFoundComponent,
     AlbumListComponent,
-    AlbumPhotosComponent
+    AlbumPhotosComponent,
+    AlbumCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,10 @@ import { AlbumPhotosComponent } from "./album/album-photos/album-photos.componen
     MatListModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

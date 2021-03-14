@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <p>Please name the new album!</p>
+  <mat-form-field>
+    <mat-label>Album name</mat-label>
+    <input #nameInput matInput />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button [mat-dialog-close]="nameInput.value">Ok</button>
+</div>

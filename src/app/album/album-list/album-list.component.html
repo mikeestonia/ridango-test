@@ -1,4 +1,5 @@
-<mat-list *ngIf="albums">
+<mat-list *ngIf="albums?.length; else noAlbums">
+  <ng-template [ngTemplateOutlet]="addMenuItem"></ng-template>
   <mat-list-item *ngFor="let album of albums">
     <span [routerLink]="'photos/' + album.id">
       {{ album.title }}
@@ -11,3 +12,18 @@
     </button>
   </mat-list-item>
 </mat-list>
+
+<ng-template #noAlbums>
+  <mat-list>
+    <ng-template [ngTemplateOutlet]="addMenuItem"></ng-template>
+    <mat-list-item> No albums, please add </mat-list-item>
+  </mat-list>
+</ng-template>
+
+<ng-template #addMenuItem>
+  <mat-list-item (click)="addAlbum()">
+    <mat-icon mat-list-icon>exposure_plus_1</mat-icon>
+    Create new album
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</ng-template>
