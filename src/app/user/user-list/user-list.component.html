@@ -1,5 +1,5 @@
 <ng-container *ngIf="userService.users$ | async as users">
-  <h2>Users ({{ users.length }}) with albums</h2>
+  <h2>Users ({{ users.length }})</h2>
   <mat-expansion-panel #expansionPanel *ngFor="let user of users">
     <mat-expansion-panel-header>
       <mat-panel-title>{{ user.name }}</mat-panel-title>

@@ -1,0 +1,13 @@
+<mat-list *ngIf="logService.loggedActions$ | async as logs; else noLogs">
+  <mat-list-item *ngFor="let logItem of logs">
+    {{ JSON.stringify(logItem) }}
+  </mat-list-item>
+</mat-list>
+
+<ng-template #noLogs>
+  <mat-list>
+    <mat-list-item>
+      No logs, please take action on site to generate logs
+    </mat-list-item>
+  </mat-list>
+</ng-template>

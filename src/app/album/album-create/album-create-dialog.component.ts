@@ -7,17 +7,10 @@ import { MatDialogRef } from "@angular/material/dialog";
 })
 export class AlbumCreateDialogComponent {
 
-    name = "";
-
-    constructor(
-        public dialogRef: MatDialogRef<AlbumCreateDialogComponent>) { }
+    constructor(public dialogRef: MatDialogRef<AlbumCreateDialogComponent>) { }
 
     onNoClick(): void {
         this.dialogRef.close();
-    }
-
-    okClick(): void {
-        console.log("DSADSSD");
     }
 
 }

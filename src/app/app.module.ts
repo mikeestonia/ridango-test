@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { UserListComponent } from "./user-list/user-list.component";
+import { UserListComponent } from "./user/user-list/user-list.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -20,6 +20,8 @@ import { AlbumPhotosComponent } from "./album/album-photos/album-photos.componen
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { AlbumCreateDialogComponent } from "./album/album-create/album-create-dialog.component";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { LogComponent } from "./log/log.component";
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { AlbumCreateDialogComponent } from "./album/album-create/album-create-di
     PageNotFoundComponent,
     AlbumListComponent,
     AlbumPhotosComponent,
-    AlbumCreateDialogComponent
+    AlbumCreateDialogComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { AlbumCreateDialogComponent } from "./album/album-create/album-create-di
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

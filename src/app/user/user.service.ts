@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, of } from "rxjs";
 import { Observable } from "rxjs";
 import { take, tap } from "rxjs/operators";
+import { LogService } from "../log/log.service";
 import { Album, User } from "./user.model";
 
 @Injectable({
@@ -14,7 +15,7 @@ export class UserService {
 
   usersAlbums: Record<number, BehaviorSubject<Album[]>> = {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private logService: LogService) { }
 
   getUserAlbums$(userId: number | undefined): Observable<Album[]> {
     if (!userId) {
@@ -50,6 +51,11 @@ export class UserService {
     const currentAlbums = this.usersAlbums[userId].getValue();
     const newAlbums = currentAlbums.filter((a) => a.id !== albumId);
     this.persistAlbums(userId, newAlbums);
+    this.logService.log({
+      action: "delete",
+      type: "album",
+      userId
+    });
   }
 
   createAlbum(userId: number, title: string): void {
@@ -60,6 +66,11 @@ export class UserService {
       title,
     }, ...currentAlbums];
     this.persistAlbums(userId, newAlbums);
+    this.logService.log({
+      action: "add",
+      type: "album",
+      userId
+    });
   }
 
   private persistAlbums(userId: number, albums: Album[]): void {
