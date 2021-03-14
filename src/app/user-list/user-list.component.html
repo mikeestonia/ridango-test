@@ -1,1 +1,13 @@
-<p>user-list works!</p>
+<ng-container *ngIf="userService.users$ | async as users">
+  <h2>Users ({{ users.length }}) with albums</h2>
+  <mat-expansion-panel #expansionPanel *ngFor="let user of users">
+    <mat-expansion-panel-header>
+      <mat-panel-title> This is the expansion title </mat-panel-title>
+      <mat-panel-description> Click to show user albums </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-album-list
+      *ngIf="expansionPanel.expanded"
+      [userId]="user.id"
+    ></app-album-list>
+  </mat-expansion-panel>
+</ng-container>
