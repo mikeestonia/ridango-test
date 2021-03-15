@@ -23,6 +23,7 @@ import { AlbumCreateDialogComponent } from "./album/album-create/album-create-di
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { LogComponent } from "./log/log.component";
 import { PhotoCreateDialogComponent } from "./album/album-photos/photos-create/photos-create-dialog.component";
+import { MetricsComponent } from './log/metrics/metrics.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { PhotoCreateDialogComponent } from "./album/album-photos/photos-create/p
     AlbumPhotosComponent,
     AlbumCreateDialogComponent,
     LogComponent,
-    PhotoCreateDialogComponent
+    PhotoCreateDialogComponent,
+    MetricsComponent
   ],
   imports: [
     BrowserModule,

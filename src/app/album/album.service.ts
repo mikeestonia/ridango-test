@@ -63,7 +63,7 @@ export class AlbumService {
     this.persistAlbums(albumId, newPhotos);
     this.logService.log({
       action: "delete",
-      type: "album",
+      type: "photo",
       id: albumId
     });
   }
